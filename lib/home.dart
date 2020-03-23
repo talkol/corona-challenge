@@ -191,21 +191,22 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               children: <Widget>[
                 if (uiState != 'in-timer')
                   FloatingActionButton.extended(
-                    heroTag: "btn1",
-                    onPressed: () => _buttonPressed('left'),
+                    heroTag: 'btn1',
+                    onPressed: () async => await _buttonPressed('left'),
                     label: (uiState == 'out-map') ? 
                     ((challengeStarting) ? Text('Getting Location...') : Text('Enter Self-Quarantine'))
                     : Text('Quit Challenge')
                   )
                 else 
                   FloatingActionButton(
-                    heroTag: "btn2",
-                    onPressed: () => _buttonPressed('left'),
+                    heroTag: 'btn1',
+                    onPressed: () async => await _buttonPressed('left'),
                     tooltip: 'My Location',
                     child: Icon(Icons.my_location),
                   ),
                 if (uiState != 'out-map') FloatingActionButton(
-                    onPressed: () => _buttonPressed('right'),
+                    heroTag: 'btn2',
+                    onPressed: () async => await _buttonPressed('right'),
                     tooltip: (uiState == 'in-map') ? 'Timelapse' : 'Share',
                     child: (uiState == 'in-map') ? Icon(Icons.timelapse) : Icon(Icons.share)
                   ),
