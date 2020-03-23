@@ -1,4 +1,4 @@
-package com.example.lockdown
+package org.talkol.corona
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity
