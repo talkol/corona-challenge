@@ -128,7 +128,11 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     setState(() {
       shareStarting = true;
     });
-    await shareProgressImage(screenshotContainer.currentContext.findRenderObject());
+    try {
+      await shareProgressImage(screenshotContainer.currentContext.findRenderObject());
+    } catch (e) {
+      debugPrint('error: $e');
+    }
     setState(() {
       shareStarting = false;
     });
