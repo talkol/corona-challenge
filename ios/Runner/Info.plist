@@ -33,9 +33,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>The app tracks location in a battery-efficient way to make sure you remain in self-quarantine</string>
+	<string>To participate in the challenge you must enable "Always Allow" location tracking (battery-efficient)</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>The app tracks location in a battery-efficient way to make sure you remain in self-quarantine</string>
+	<string>To participate in the challenge you must enable location tracking (battery-efficient)</string>
 	<key>NSMotionUsageDescription</key>
 	<string>The app uses motion controls to improve battery efficiency when tracking your location</string>
 	<key>NSPrincipalClass</key>

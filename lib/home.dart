@@ -63,7 +63,14 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
         distanceFilter: 50.0,
         stopOnTerminate: false,
         startOnBoot: true,
-        maxDaysToPersist: 100
+        maxDaysToPersist: 100,
+        locationAuthorizationAlert: {
+          'titleWhenNotEnabled': 'Location services not enabled',
+          'titleWhenOff': 'Location services not enabled',
+          'instructions': 'To participate in the challenge you must enable "Always Allow" location tracking (battery-efficient)',
+          'cancelButton': 'Cancel',
+          'settingsButton': 'Settings'
+        }
     )).then((bg.State state) {
       if (!state.enabled) {
         bg.BackgroundGeolocation.start();
