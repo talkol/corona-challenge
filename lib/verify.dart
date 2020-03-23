@@ -2,7 +2,7 @@ import 'package:flutter_background_geolocation/flutter_background_geolocation.da
 import 'package:latlong/latlong.dart';
 
 const double ALLOWED_DISTANCE_FROM_STATIONARY = 100; // in meters
-const MAX_MINUTES_ALLOWED_OUTSIDE = 30;
+const MAX_MINUTES_ALLOWED_OUTSIDE = 10;
 
 Future<bool> verifyDidChallengeFail(DateTime challengeTimerStart, LatLng challengeStationaryPosition) async {
   final distanceCalculator = new Distance();
