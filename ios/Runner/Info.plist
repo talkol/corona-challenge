@@ -33,11 +33,11 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string></string>
+	<string>The app tracks location in a battery-efficient way to make sure you remain in self-quarantine</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>The app tracks location in a battery-efficient way to make sure you remain in self-quarantine</string>
 	<key>NSMotionUsageDescription</key>
-	<string></string>
+	<string>The app uses motion controls to improve battery efficiency when tracking your location</string>
 	<key>NSPrincipalClass</key>
 	<string></string>
 	<key>UIBackgroundModes</key>
