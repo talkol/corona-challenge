@@ -26,6 +26,9 @@ class _TimerPageState extends State<TimerPage> with AutomaticKeepAliveClientMixi
   @override
   void initState() {
     super.initState();
+    daysStr = '?';
+    percentStr = '?';
+    nextGoalStr = '?';
     timeStr = _generateTimerStr(0,0,0);
     chartData = _generateTimerChartData(0,0,0);
     timer = new Timer.periodic(const Duration(milliseconds:250), (Timer t) => _timerTick());
