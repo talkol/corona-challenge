@@ -50,7 +50,8 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
-      _checkIfChallengeFailed();
+      _checkIfChallengeFailed().then((_) => 
+      _shareLinkWithFriends());
     }
   }
 
@@ -110,6 +111,8 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
         challengeStarting = false;
       });
       _tabController.animateTo(1);
+      await Future.delayed(const Duration(seconds: 2));
+      await _shareLinkWithFriends();
     } catch (e) {
       debugPrint('Error: $e');
       await Future.delayed(const Duration(seconds: 3));
@@ -138,6 +141,12 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       Route route = MaterialPageRoute(builder: (context) => FailedPage(reason: failure));
       Navigator.pushReplacement(context, route);
     }
+  }
+
+  Future<void> _shareLinkWithFriends() async {
+    if (challengeStationaryPosition == null) return;
+    await Future.delayed(const Duration(seconds: 2));
+    await shareLinkPopup(context);
   }
 
   Future<void> _share() async {

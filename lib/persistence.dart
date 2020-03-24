@@ -6,6 +6,7 @@ const PERSISTENCE_KEY_TIMESTAMP = 'timestamp';
 const PERSISTENCE_KEY_LATITUDE = 'latitude';
 const PERSISTENCE_KEY_LONGITUDE = 'longitude';
 const PERSISTENCE_KEY_FAILED_MSG = 'failure';
+const PERSISTENCE_KEY_SHARE_COUNTER = 'sharecounter';
 
 Future<Tuple2<DateTime, LatLng>> getPersistentChallenge() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -50,4 +51,14 @@ Future<void> setPersistentFailedMessage(String failure) async {
 Future<void> clearPersistentFailedMessage() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   await prefs.remove(PERSISTENCE_KEY_FAILED_MSG);
+}
+
+Future<int> getPersistentShareCounter() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  return prefs.getInt(PERSISTENCE_KEY_SHARE_COUNTER) ?? 0;
+}
+
+Future<void> setPersistentShareCounter(int value) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  await prefs.setInt(PERSISTENCE_KEY_SHARE_COUNTER, value);
 }
