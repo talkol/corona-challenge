@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 const PERSISTENCE_KEY_TIMESTAMP = 'timestamp';
 const PERSISTENCE_KEY_LATITUDE = 'latitude';
 const PERSISTENCE_KEY_LONGITUDE = 'longitude';
-const PERSISTENCE_KEY_FAILED_MSG = 'failedmsg';
+const PERSISTENCE_KEY_FAILED_MSG = 'failure';
 
 Future<Tuple2<DateTime, LatLng>> getPersistentChallenge() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -37,14 +37,14 @@ Future<void> clearPersistentChallenge() async {
   await prefs.remove(PERSISTENCE_KEY_LONGITUDE);
 }
 
-Future<bool> getPersistentFailedMessage() async {
+Future<String> getPersistentFailedMessage() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  return prefs.getBool(PERSISTENCE_KEY_FAILED_MSG) ?? false;
+  return prefs.getString(PERSISTENCE_KEY_FAILED_MSG);
 }
 
-Future<void> setPersistentFailedMessage() async {
+Future<void> setPersistentFailedMessage(String failure) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  await prefs.setBool(PERSISTENCE_KEY_FAILED_MSG, true);
+  await prefs.setString(PERSISTENCE_KEY_FAILED_MSG, failure);
 }
 
 Future<void> clearPersistentFailedMessage() async {

@@ -15,7 +15,7 @@ Future<Null> main() async {
 class LockdownApp extends StatelessWidget {
   final DateTime initChallengeTimerStart;
   final LatLng initChallengeStationaryPosition;
-  final bool initFailedMessage;
+  final String initFailedMessage;
 
   LockdownApp(this.initChallengeTimerStart, this.initChallengeStationaryPosition, this.initFailedMessage);
 
@@ -26,7 +26,7 @@ class LockdownApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.deepOrange,
       ),
-      home: (initFailedMessage) ? FailedPage() : (
+      home: (initFailedMessage != null) ? FailedPage(reason: initFailedMessage) : (
         (initChallengeStationaryPosition == null) ? 
           WelcomePage() : 
           HomePage(initChallengeTimerStart: initChallengeTimerStart, initChallengeStationaryPosition: initChallengeStationaryPosition)

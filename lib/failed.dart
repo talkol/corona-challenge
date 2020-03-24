@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:lockdown/home.dart';
 import 'package:lockdown/persistence.dart';
+import 'package:lockdown/verify.dart';
 
 class FailedPage extends StatefulWidget {
+  final String reason; // 'left-zone' , 'no-location'
+
+  FailedPage({Key key, @required this.reason}) : super(key: key);
+
   @override
   _FailedPageState createState() => _FailedPageState();
 }
@@ -40,7 +45,9 @@ class _FailedPageState extends State<FailedPage> {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(50.0, 0, 50.0, 70.0),
                     child: Text(
-                      'It seems you left your quarantine zone for a while.. Challenge failed.',
+                      (widget.reason == FAILURE_LEFT_ZONE) ? 'It seems you left your quarantine zone for a while.. Challenge failed.' :
+                      (widget.reason == FAILURE_NO_LOCATION) ? 'It seems location tracking is not set to "Always Allow".. Challenge failed.' :
+                      'Unknown failure.',
                       style: new TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,

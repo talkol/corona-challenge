@@ -33,11 +33,11 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>To participate in the challenge you must enable "Always Allow" location tracking (battery-efficient)</string>
+	<string>To participate in the challenge you must enable "Always Allow" location tracking (very battery-efficient).</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>To participate in the challenge you must enable location tracking (battery-efficient)</string>
+	<string>To participate in the challenge you must enable location tracking (very battery-efficient).</string>
 	<key>NSMotionUsageDescription</key>
-	<string>The app uses motion controls to improve battery efficiency when tracking your location</string>
+	<string>The app uses motion controls to improve battery efficiency when tracking your location.</string>
 	<key>NSPrincipalClass</key>
 	<string></string>
 	<key>UIBackgroundModes</key>

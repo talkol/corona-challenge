@@ -64,10 +64,11 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
         stopOnTerminate: false,
         startOnBoot: true,
         maxDaysToPersist: 100,
+        locationAuthorizationRequest: 'Always',
         locationAuthorizationAlert: {
           'titleWhenNotEnabled': 'Location services not enabled',
           'titleWhenOff': 'Location services not enabled',
-          'instructions': 'To participate in the challenge you must enable "Always Allow" location tracking (battery-efficient)',
+          'instructions': 'To participate in the challenge you must enable "Always Allow" location tracking (very battery-efficient).',
           'cancelButton': 'Cancel',
           'settingsButton': 'Settings'
         }
@@ -96,18 +97,26 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     setState(() {
       challengeStarting = true;
     });
-    final location = await bg.BackgroundGeolocation.getCurrentPosition();
-    final position = new LatLng(location.coords.latitude, location.coords.longitude);
-    final time = new DateTime.now();
-    await setPersistentChallenge(time, position);
-    // enter lockdown
-    setState(() {
-      challengeTimerStart = time;
-      challengeStationaryPosition = position;
-      uiState = 'in-timer';
-      challengeStarting = false;
-    });
-    _tabController.animateTo(1);
+    try {
+      final location = await bg.BackgroundGeolocation.getCurrentPosition();
+      final position = new LatLng(location.coords.latitude, location.coords.longitude);
+      final time = new DateTime.now();
+      await setPersistentChallenge(time, position);
+      // enter lockdown
+      setState(() {
+        challengeTimerStart = time;
+        challengeStationaryPosition = position;
+        uiState = 'in-timer';
+        challengeStarting = false;
+      });
+      _tabController.animateTo(1);
+    } catch (e) {
+      debugPrint('Error: $e');
+      await Future.delayed(const Duration(seconds: 3));
+      setState(() {
+        challengeStarting = false;
+      });
+    }
   }
 
   Future<void> _endChallenge() async {
@@ -122,11 +131,11 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 
   Future<void> _checkIfChallengeFailed() async {
     if (challengeStationaryPosition == null) return;
-    final failed = await verifyDidChallengeFail(challengeTimerStart, challengeStationaryPosition);
-    if (failed) {
-      await setPersistentFailedMessage();
+    final failure = await verifyDidChallengeFail(challengeTimerStart, challengeStationaryPosition);
+    if (failure != null) {
+      await setPersistentFailedMessage(failure);
       await clearPersistentChallenge();
-      Route route = MaterialPageRoute(builder: (context) => FailedPage());
+      Route route = MaterialPageRoute(builder: (context) => FailedPage(reason: failure));
       Navigator.pushReplacement(context, route);
     }
   }
@@ -138,7 +147,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     try {
       await shareProgressImage(screenshotContainer.currentContext.findRenderObject());
     } catch (e) {
-      debugPrint('error: $e');
+      debugPrint('Error: $e');
     }
     setState(() {
       shareStarting = false;
