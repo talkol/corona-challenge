@@ -11,6 +11,7 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="Corona"
         android:icon="@mipmap/ic_launcher">
+        <meta-data android:name="com.transistorsoft.locationmanager.license" android:value="@string/secret_transistorsoft_token" />
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

@@ -4,6 +4,7 @@ import 'package:flutter_background_geolocation/flutter_background_geolocation.da
 import 'package:lockdown/failed.dart';
 import 'package:lockdown/map.dart';
 import 'package:lockdown/persistence.dart';
+import 'package:lockdown/secrets.dart';
 import 'package:lockdown/share.dart';
 import 'package:lockdown/timer.dart';
 import 'package:latlong/latlong.dart';

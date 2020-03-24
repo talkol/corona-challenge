@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_background_geolocation/flutter_background_geolocation.dart' as bg;
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
+import 'package:lockdown/secrets.dart';
 import 'package:lockdown/verify.dart';
 
-const String MAP_TOKEN = 'pk.eyJ1IjoiY2hyaXN0b2NyYWN5IiwiYSI6ImVmM2Y2MDA1NzIyMjg1NTdhZGFlYmZiY2QyODVjNzI2In0.htaacx3ZhE5uAWN86-YNAQ';
 const MAP_ZOOM = 17.5;
 
 class MapPage extends StatefulWidget {
@@ -95,7 +95,7 @@ class _MapPageState extends State<MapPage> with AutomaticKeepAliveClientMixin<Ma
             new TileLayerOptions(
               urlTemplate: "https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}@2x.png?access_token={accessToken}",
               additionalOptions: {
-                'accessToken': MAP_TOKEN,
+                'accessToken': SECRET_MAP_TOKEN,
                 'id': 'mapbox.streets',
               },
             ),
