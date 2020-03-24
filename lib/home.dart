@@ -203,7 +203,10 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       body: TabBarView(
         controller: _tabController,
           children: [
-            MapPage(stationaryPosition: challengeStationaryPosition),
+            MapPage(
+              stationaryPosition: challengeStationaryPosition,
+              message: (uiState == 'out-map') ? null : 'Stay inside red area to save lives',
+            ),
             RepaintBoundary(
               key: screenshotContainer,
               child: TimerPage(startTime: challengeTimerStart)

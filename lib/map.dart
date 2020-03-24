@@ -9,8 +9,9 @@ const MAP_ZOOM = 17.5;
 
 class MapPage extends StatefulWidget {
   final LatLng stationaryPosition;
+  final String message;
 
-  MapPage({Key key, this.stationaryPosition}) : super(key: key);
+  MapPage({Key key, this.stationaryPosition, this.message}) : super(key: key);
   
   @override
   _MapPageState createState() => _MapPageState();
@@ -85,20 +86,48 @@ class _MapPageState extends State<MapPage> with AutomaticKeepAliveClientMixin<Ma
 
   @override
   Widget build(BuildContext context) {
-    return FlutterMap(
-      mapController: _mapController,
-      options: _mapOptions,
-      layers: [
-        new TileLayerOptions(
-          urlTemplate: "https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}@2x.png?access_token={accessToken}",
-          additionalOptions: {
-            'accessToken': MAP_TOKEN,
-            'id': 'mapbox.streets',
-          },
+    return Stack(
+      children: <Widget>[
+        FlutterMap(
+          mapController: _mapController,
+          options: _mapOptions,
+          layers: [
+            new TileLayerOptions(
+              urlTemplate: "https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}@2x.png?access_token={accessToken}",
+              additionalOptions: {
+                'accessToken': MAP_TOKEN,
+                'id': 'mapbox.streets',
+              },
+            ),
+            new CircleLayerOptions(circles: _stationaryMarker),
+            new CircleLayerOptions(circles: _currentPosition),
+          ]
         ),
-        new CircleLayerOptions(circles: _stationaryMarker),
-        new CircleLayerOptions(circles: _currentPosition),
+        if (widget.message != null) Padding(
+          padding: const EdgeInsets.fromLTRB(110.0, 50.0, 110.0, 0),
+          child: Text(
+            widget.message,
+            style: new TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.w600,
+              fontSize: 16.0,
+              shadows: <Shadow>[
+                Shadow(
+                  offset: Offset(-1, 0),
+                  blurRadius: 2,
+                  color: Colors.white,
+                ),
+                Shadow(
+                  offset: Offset(1, 0),
+                  blurRadius: 2,
+                  color: Colors.white,
+                )
+              ],
+            ),
+            textAlign: TextAlign.center,
+          )
+        )
       ]
-    );
+    );  
   }
 }
