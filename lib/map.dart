@@ -108,17 +108,17 @@ class _MapPageState extends State<MapPage> with AutomaticKeepAliveClientMixin<Ma
           child: Text(
             widget.message,
             style: new TextStyle(
-              color: Colors.black,
+              color: Colors.blue,
               fontWeight: FontWeight.w600,
               fontSize: 16.0,
               shadows: <Shadow>[
                 Shadow(
-                  offset: Offset(-1, 0),
+                  offset: Offset(-1, -1),
                   blurRadius: 2,
                   color: Colors.white,
                 ),
                 Shadow(
-                  offset: Offset(1, 0),
+                  offset: Offset(1, 1),
                   blurRadius: 2,
                   color: Colors.white,
                 )
