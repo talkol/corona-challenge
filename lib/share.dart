@@ -34,9 +34,10 @@ Future<void> shareProgressImage(RenderRepaintBoundary boundary) async {
   );
 }
 
-Future<void> shareLinkPopup(BuildContext context) async {
-  final counter = await getPersistentShareCounter();
+Future<void> shareLinkPopup(BuildContext context, bool reset) async {
+  int counter = await getPersistentShareCounter();
   if (counter == SHARE_COUNTER_DONT_ASK) return;
+  if (reset) counter = 0;
   await setPersistentShareCounter(counter + 1);
   if (counter % HOW_OFTEN_TO_ASK_SHARE == 0) {
     showAlert(

@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
       _checkIfChallengeFailed().then((_) => 
-      _shareLinkWithFriends());
+      _shareLinkWithFriends(false));
     }
   }
 
@@ -112,7 +112,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       });
       _tabController.animateTo(1);
       await Future.delayed(const Duration(seconds: 2));
-      await _shareLinkWithFriends();
+      await _shareLinkWithFriends(true);
     } catch (e) {
       debugPrint('Error: $e');
       await Future.delayed(const Duration(seconds: 3));
@@ -143,10 +143,10 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     }
   }
 
-  Future<void> _shareLinkWithFriends() async {
+  Future<void> _shareLinkWithFriends(bool reset) async {
     if (challengeStationaryPosition == null) return;
     await Future.delayed(const Duration(seconds: 2));
-    await shareLinkPopup(context);
+    await shareLinkPopup(context, reset);
   }
 
   Future<void> _share() async {
