@@ -156,9 +156,11 @@ packages:
   flutter_map:
     dependency: "direct main"
     description:
-      name: flutter_map
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "."
+      ref: fix_edge_tiles
+      resolved-ref: ada0c5ad3db2840c1f0df23466db07d9cfa80549
+      url: "git://github.com/ibrierley/flutter_map.git"
+    source: git
     version: "0.8.2"
   flutter_test:
     dependency: "direct dev"
