@@ -8,6 +8,7 @@ import 'package:lockdown/share.dart';
 import 'package:lockdown/timer.dart';
 import 'package:latlong/latlong.dart';
 import 'package:lockdown/verify.dart';
+import 'package:flutter_alert/flutter_alert.dart';
 
 class HomePage extends StatefulWidget {
   final DateTime initChallengeTimerStart;
@@ -163,6 +164,23 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     });
   }
 
+  Future<void> _confirmQuitPopup() async {
+    showAlert(
+      context: context,
+      title: 'Are you sure?',
+      body: '\nStay in self-quarantine to save lives!',
+      actions: [
+        AlertAction(
+          text: 'Quit',
+          onPressed: () async {
+            await _endChallenge();
+          },
+        ),
+      ],
+      cancelable: true,
+    );
+  }
+
   Future<void> _buttonPressed(String buttonSide) async {
     if (_tabController.indexIsChanging) return;
     if (challengeStarting) return;
@@ -172,7 +190,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       await _startChallenge();
     } else if (uiState == 'in-map') {
       if (buttonSide == 'left') {
-        await _endChallenge();
+        await _confirmQuitPopup();
       } else {
         // timer
         setState(() {
@@ -198,7 +216,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: (uiState == 'out-map') ? Text('Start the challenge!') : Text("I'm in self-quarantine!"),
+        title: (uiState == 'out-map') ? Text('Start the challenge!') : Text("You're in self-quarantine!"),
       ),
       body: TabBarView(
         controller: _tabController,
