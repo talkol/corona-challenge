@@ -1,5 +1,6 @@
 secrets.dart
 secrets.xml
+key.properties
 
 # Miscellaneous
 *.class
