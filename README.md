@@ -33,3 +33,11 @@ flutter run
 ### Android
 
 * Run `flutter build appbundle`
+
+* To test manually:
+
+  * `brew install bundletool`
+  
+  * Extract APK with `bundletool build-apks --bundle=./app-release.aab --output=./app-release.apks --mode=universal`
+
+  * Rename `./app-release.apks` to `./app-release.zip` and extract
