@@ -38,7 +38,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(50.0, 0, 50.0, 70.0),
                     child: Text(
-                      'Self-quarantine is the best way to contain COVID-19. How long can you last?',
+                      'Protect yourself by staying home. How long can you last?',
                       style: new TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
@@ -69,7 +69,7 @@ class _WelcomePageState extends State<WelcomePage> {
             children: <Widget>[
                 FloatingActionButton.extended(
                   onPressed: _moveToNextPage,
-                  label: Text('Start Challenge')
+                  label: Text('Show My Location')
                 )
             ],
           ),

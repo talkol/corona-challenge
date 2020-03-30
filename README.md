@@ -1,4 +1,4 @@
-# The Corona Challenge
+# The Stay Home Challenge
 
 This is a [flutter](https://flutter.dev/) project.
 

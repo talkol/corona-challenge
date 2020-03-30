@@ -22,7 +22,7 @@ class LockdownApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Corona Challenge',
+      title: 'Stay Home Challenge',
       theme: ThemeData(
         primarySwatch: Colors.deepOrange,
       ),

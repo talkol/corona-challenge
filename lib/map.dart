@@ -104,7 +104,7 @@ class _MapPageState extends State<MapPage> with AutomaticKeepAliveClientMixin<Ma
           ]
         ),
         if (widget.message != null) Padding(
-          padding: const EdgeInsets.fromLTRB(110.0, 50.0, 110.0, 0),
+          padding: const EdgeInsets.fromLTRB(100.0, 50.0, 100.0, 0),
           child: Text(
             widget.message,
             style: new TextStyle(

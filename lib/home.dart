@@ -4,7 +4,6 @@ import 'package:flutter_background_geolocation/flutter_background_geolocation.da
 import 'package:lockdown/failed.dart';
 import 'package:lockdown/map.dart';
 import 'package:lockdown/persistence.dart';
-import 'package:lockdown/secrets.dart';
 import 'package:lockdown/share.dart';
 import 'package:lockdown/timer.dart';
 import 'package:latlong/latlong.dart';
@@ -169,7 +168,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     showAlert(
       context: context,
       title: 'Are you sure?',
-      body: '\nStay in self-quarantine to save lives!',
+      body: '\nStay in the challenge, stay home!',
       actions: [
         AlertAction(
           text: 'Quit',
@@ -217,14 +216,14 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: (uiState == 'out-map') ? Text('Start the challenge!') : Text("You're in self-quarantine!"),
+        title: (uiState == 'out-map') ? Text('Start the challenge!') : Text('Stay home!'),
       ),
       body: TabBarView(
         controller: _tabController,
           children: [
             MapPage(
               stationaryPosition: challengeStationaryPosition,
-              message: (uiState == 'out-map') ? null : 'Stay inside red area to save lives',
+              message: (uiState == 'out-map') ? null : 'Stay inside red area to keep timer running',
             ),
             RepaintBoundary(
               key: screenshotContainer,
@@ -245,7 +244,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                     heroTag: 'btn1',
                     onPressed: () async => await _buttonPressed('left'),
                     label: (uiState == 'out-map') ? 
-                    ((challengeStarting) ? Text('Getting Location...') : Text('Enter Self-Quarantine'))
+                    ((challengeStarting) ? Text('Getting Location...') : Text('Start Challenge Here'))
                     : Text('Quit Challenge')
                   )
                 else 

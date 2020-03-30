@@ -42,8 +42,8 @@ Future<void> shareLinkPopup(BuildContext context, bool reset) async {
   if (counter % HOW_OFTEN_TO_ASK_SHARE == 0) {
     showAlert(
       context: context,
-      title: 'Promote self-quarantine!',
-      body: '\nSend the app link to friends with an IM like Facebook Messenger or WhatsApp.',
+      title: 'Promote Stay Home!',
+      body: '\nSend the app link to friends with an instant messenger like Facebook Messenger or WhatsApp.',
       actions: [
         AlertAction(
           text: 'Share',
@@ -51,7 +51,7 @@ Future<void> shareLinkPopup(BuildContext context, bool reset) async {
           onPressed: () {
             WcFlutterShare.share(
               sharePopupTitle: 'Share',
-              text: 'Do the Corona Challenge to show your support for self-quarantine! https://orbs.page.link/corona',
+              text: 'Participate in the "Stay Home Challenge" to show your support for staying at home! Download the app here: https://orbs.page.link/stayhome',
               mimeType: 'text/plain'
             );
           },

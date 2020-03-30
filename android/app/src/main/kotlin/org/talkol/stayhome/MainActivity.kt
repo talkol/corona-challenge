@@ -1,4 +1,4 @@
-package org.talkol.corona
+package org.talkol.stayhome
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

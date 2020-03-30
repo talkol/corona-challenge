@@ -13,6 +13,7 @@ class TimerPage extends StatefulWidget {
 
 class _TimerPageState extends State<TimerPage> with AutomaticKeepAliveClientMixin<TimerPage> {
   final GlobalKey<AnimatedCircularChartState> _chartKey = new GlobalKey<AnimatedCircularChartState>();
+  bool daysPlural;
   String daysStr;
   String timeStr;
   String percentStr;
@@ -26,6 +27,7 @@ class _TimerPageState extends State<TimerPage> with AutomaticKeepAliveClientMixi
   @override
   void initState() {
     super.initState();
+    daysPlural = true;
     daysStr = '?';
     percentStr = '?';
     nextGoalStr = '?';
@@ -48,6 +50,7 @@ class _TimerPageState extends State<TimerPage> with AutomaticKeepAliveClientMixi
       var m = duration.inMinutes % 60;
       var s = duration.inSeconds % 60;
       daysStr = duration.inDays.toString();
+      daysPlural = (duration.inDays != 1);
       int nextGoalDays = ((duration.inDays.toDouble() / 7).floor() + 1) * 7;
       double percent = 100 * duration.inSeconds.toDouble() / Duration(days: nextGoalDays).inSeconds.toDouble();
       percentStr = percent.toStringAsFixed(1);
@@ -92,7 +95,7 @@ class _TimerPageState extends State<TimerPage> with AutomaticKeepAliveClientMixi
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text(
-            '$daysStr  DAYS',
+            (daysPlural) ? '$daysStr  DAYS' : '$daysStr  DAY',
             style: new TextStyle(
               color: Colors.grey[800],
               fontWeight: FontWeight.normal,

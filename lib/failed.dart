@@ -45,8 +45,8 @@ class _FailedPageState extends State<FailedPage> {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(50.0, 0, 50.0, 70.0),
                     child: Text(
-                      (widget.reason == FAILURE_LEFT_ZONE) ? 'It seems you left your quarantine zone for a while.. Challenge failed.' :
-                      (widget.reason == FAILURE_NO_LOCATION) ? 'It seems location tracking is not set to "Always Allow".. Challenge failed.' :
+                      (widget.reason == FAILURE_LEFT_ZONE) ? 'It seems you left your home area for a while.. Challenge failed!' :
+                      (widget.reason == FAILURE_NO_LOCATION) ? 'It seems location tracking is not set to "Always Allow".. Challenge failed!' :
                       'Unknown failure.',
                       style: new TextStyle(
                         color: Colors.black,
